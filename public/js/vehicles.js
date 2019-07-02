@@ -13,9 +13,9 @@ function openRightSideScreen(title, route, loadCallback) {
         rSideBar.data('url', route);
         rPanelBody.html('');
         rPanelBody.load(route, function () {
-            setCloseRightSideScreen();
             setButtonType();
             $('#color').colorpicker();
+            setCloseRightSideScreen();
         });
     }
 
@@ -25,7 +25,7 @@ function openRightSideScreen(title, route, loadCallback) {
 
 function setCloseRightSideScreen()
 {
-    $('.right-sidebar-close').click(function () {
+    $('.right-sidebar-close').unbind().click(function () {
         var rSideBar = $('.right-sidebar');
         rSideBar.slideDown(50);
         rSideBar.toggleClass('shw-rside');
@@ -47,7 +47,7 @@ $(function () {
     }).tooltip();
 
     $('.btn-change-color').click(function () {
-        openRightSideScreen('Set color', '/vehicles/' + $(this).data('id') + '/set-color');
+        openRightSideScreen('Set vehicle color', '/vehicles/' + $(this).data('id') + '/set-color');
     }).tooltip();
 
     $('.btn-delete').click(function () {

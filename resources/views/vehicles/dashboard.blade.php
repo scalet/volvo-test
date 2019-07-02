@@ -15,25 +15,25 @@
             </div>
             @if($message = Session::get('success') || count($errors)>0)
                 <div class="col-md-12">
-                @if($message = Session::get('success'))
-                    <div class="alert alert-success">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                        {{$message}}
-                    </div>
-                @endif
+                    @if($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            {{$message}}
+                        </div>
+                    @endif
 
-                @if(count($errors)>0)
-                    <div class="alert alert-danger">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                        <ul class="mb-0">
-                            @foreach($errors->all() as $error)
-                                <li>{{$error}}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                    @if(count($errors)>0)
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <ul class="mb-0">
+                                @foreach($errors->all() as $error)
+                                    <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
                 </div>
             @endif
@@ -103,19 +103,20 @@
 
             <div class="col-md-6 mt-3">
                 <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                        <div class="col-md-6"><h2>Vehicles</h2></div>
+                        <div class="col-md-6 text-right">
+                            <button type="button" class="btn btn-success btn-add-vehicle" data-toggle="tooltip"
+                                    data-placement="top" title="Add a vehicle">
+                                <i class="fas fa-inverse fa-2x fa-plus-circle"></i>
+                                Add Vehicle
+                            </button>
+                        </div>
+                        </div>
+                    </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6">
-                                <h2>Vehicles</h2>
-                            </div>
-                            <div class="col-md-6 text-right">
-                                <button type="button" class="btn btn-success btn-add-vehicle" data-toggle="tooltip"
-                                        data-placement="top" title="Add a vehicle">
-                                    <i class="fas fa-inverse fa-2x fa-plus-circle"></i>
-                                    Add Vehicle
-                                </button>
-                            </div>
-
                             <div class="col-md-12 mt-2">
                                 @if (count($dashboardInformation->vehicles) > 0)
                                     <table id="fleetTable" class="table" width="100%">
@@ -170,8 +171,8 @@
             {{-- CHART --}}
             <div class="col-md-6 mt-3 text-center">
                 <div class="card">
+                    <div class="card-header"><h2>Vehicles by type</h2></div>
                     <div class="card-body">
-                        <h2>Total of Vehicles</h2>
                         @if ($dashboardInformation->totVehicles > 0)
                             <div class="ct-chart" style="width: 100%;"></div>
                         @else

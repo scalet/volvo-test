@@ -90,7 +90,7 @@
         <div class="slimscrollright">
             <div class="rpanel-title">
                 <label class="m-0">Service Panel</label>
-                <span class="right-sidebar-close" data-toggle="tooltip" data-placement="right" title="Close"><i class="fa fa-2x fa-times"></i></span> </div>
+                <span class="right-sidebar-close" data-toggle="tooltip" data-placement="bottom" title="Close"><i class="fa fa-2x fa-times"></i></span> </div>
             <div class="r-panel-body">
             </div>
         </div>

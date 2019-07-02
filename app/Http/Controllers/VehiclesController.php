@@ -85,6 +85,7 @@ class VehiclesController extends Controller
             $newVehicle->color = $request->input('color');
 
             $insert =$this->insert($newVehicle);
+
             if ($insert) {
                 return redirect('/vehicles/dashboard')->with('success', 'Vehicle created with success!');
             } else {
@@ -93,14 +94,30 @@ class VehiclesController extends Controller
         }
     }
 
-    public function setColor (int $vehicle_id)
+    public function setColor (int $vehicle_id, Request $request)
     {
-        $vehicle = Vehicles::find($vehicle_id);
+        if ($request->isMethod('get')) {
+            $vehicle = Vehicles::find($vehicle_id);
 
-        $vehicle->chassisSeries = substr($vehicle->chassis_id, 0, 11);
-        $vehicle->chassisNumber = substr($vehicle->chassis_id, -6);
+            $vehicle->chassisSeries = substr($vehicle->chassis_id, 0, 11);
+            $vehicle->chassisNumber = substr($vehicle->chassis_id, -6);
 
-        return view('vehicles.set-color', ['vehicle' => $vehicle]);
+            return view('vehicles.set-color', ['vehicle' => $vehicle]);
+        } else if ($request->isMethod('patch')) {
+
+            $this->validate($request, [
+                'color' => 'required|regex:/#[a-zA-Z0-9]{6}/'
+            ]);
+
+            $update = $this->updateColor($vehicle_id, $request->input('color'));
+
+            if ($update) {
+                return redirect('/vehicles/dashboard')->with('success', 'Vehicle updated with success!');
+            } else {
+                return redirect()->route('vehicles-create')->withErrors(['Error on update vehicle.'])->withInput();
+            }
+
+        }
     }
 
     public function confirmDelete (int $vehicle_id)
@@ -155,8 +172,8 @@ class VehiclesController extends Controller
 
     private function updateColor ($vehicle_id, $newColor)
     {
-        $vehicle = new Vehicles($vehicle_id);
+        $vehicle = Vehicles::find($vehicle_id);
         $vehicle->color = $newColor;
-        dd($vehicle);
+        return $vehicle->save();
     }
 }
