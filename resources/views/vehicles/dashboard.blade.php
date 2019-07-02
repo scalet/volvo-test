@@ -13,6 +13,30 @@
             <div class="col-md-12">
                 <h1>Fleet</h1>
             </div>
+            @if($message = Session::get('success') || count($errors)>0)
+                <div class="col-md-12">
+                @if($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        {{$message}}
+                    </div>
+                @endif
+
+                @if(count($errors)>0)
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <ul class="mb-0">
+                            @foreach($errors->all() as $error)
+                                <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                </div>
+            @endif
 
             <div class="col-md-3">
                 <div class="card">
@@ -33,7 +57,8 @@
                 <div class="card">
                     <div class="card-body bg-info">
                         <div class="d-flex flex-row">
-                            <div class="round round-lg align-self-center round-info"><i class="fas fa-3x fa-car fa-inverse"></i>
+                            <div class="round round-lg align-self-center round-info"><i
+                                    class="fas fa-3x fa-car fa-inverse"></i>
                             </div>
                             <div class="ml-5 align-self-center">
                                 <h3 id="totCars" class="text-light text-right">{{$dashboardInformation->totCars}}</h3>
@@ -84,10 +109,11 @@
                                 <h2>Vehicles</h2>
                             </div>
                             <div class="col-md-6 text-right">
-                                <a href="{{route('vehicles-create')}}" class="btn btn-primary">
+                                <button type="button" class="btn btn-success btn-add-vehicle" data-toggle="tooltip"
+                                        data-placement="top" title="Add a vehicle">
                                     <i class="fas fa-inverse fa-2x fa-plus-circle"></i>
                                     Add Vehicle
-                                </a>
+                                </button>
                             </div>
 
                             <div class="col-md-12 mt-2">
@@ -108,14 +134,23 @@
                                                     <i class="fas fa-{{strtolower($vehicle->type)}}"></i> {{ucfirst($vehicle->type)}}
                                                 </td>
                                                 <td class="text-right">{{$vehicle->created_at}}</td>
-                                                <td>
-                                                    <div style="width: 70%; background-color: {{$vehicle->color}};">
+                                                <td nowrap="">
+                                                    <a href="#" class="btn btn-sm"
+                                                       style="background-color: {{$vehicle->color}};">
                                                         &nbsp;
-                                                    </div>
+                                                    </a>
+                                                    <button class="btn btn-secondary btn-sm btn-change-color"
+                                                            data-id="{{$vehicle->id}}" data-toggle="tooltip"
+                                                            data-placement="top" title="Set the color">
+                                                        <i class="fas fa-brush"></i>
+                                                    </button>
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-secondary btn-sm btn-change-color">
-                                                        <i class="fas fa-brush"></i>
+
+                                                    <button class="btn btn-danger btn-sm btn-delete"
+                                                            data-id="{{$vehicle->id}}" data-toggle="tooltip"
+                                                            data-placement="top" title="Delete vehicle">
+                                                        <i class="fas fa-trash"></i>
                                                     </button>
                                                 </td>
                                             </tr>
@@ -123,7 +158,7 @@
                                         </tbody>
                                     </table>
                                 @else
-                                    <div class="alert-info">This fleet of vehicles is empty. =(</div>
+                                    <div class="alert alert-info">None vehicle found on this fleet.</div>
                                 @endif
 
                             </div>
@@ -137,7 +172,11 @@
                 <div class="card">
                     <div class="card-body">
                         <h2>Total of Vehicles</h2>
-                        <div class="ct-chart" style="width: 100%;"></div>
+                        @if ($dashboardInformation->totVehicles > 0)
+                            <div class="ct-chart" style="width: 100%;"></div>
+                        @else
+                            <div class="alert alert-info">None vehicle found on this fleet.</div>
+                        @endif
                     </div>
                 </div>
             </div>

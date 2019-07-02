@@ -15,6 +15,9 @@ class VehiclesController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Dashboard of vehicles
+    */
     public function index()
     {
 
@@ -54,20 +57,20 @@ class VehiclesController extends Controller
     {
 
         if ($request->isMethod('get')) {
-            return view('vehicles.create');
+            return view('vehicles.create', ['number_passengers' => self::NUMBER_OF_PASSENGERS]);
 
         } else if ($request->isMethod('post')) {
 
             //validate the data
             $this->validate($request, [
-                'chassisSeries' => 'required|regex:/[a-zA-Z0-9\s]+/|min:11|max:11',
+                'chassisSeries' => 'required|regex:/[a-zA-Z0-9\s]+/|min:3|max:11',
                 'chassisNumber' => 'required|numeric|min:6|max:999999',
                 'type' => 'required:BUS,CAR,TRUCK',
                 'color' => 'required|regex:/#[a-zA-Z0-9]{6}/'
             ]);
 
             //Creating the Chassis ID insert rule
-            $chassisID = $request->input('chassisSeries') . $request->input('chassisNumber');
+            $chassisID = trim($request->input('chassisSeries')) . $request->input('chassisNumber');
 
             //get the number of passengers
             $numberOfPassengers = array_key_exists($request->input('type'), self::NUMBER_OF_PASSENGERS);
@@ -83,10 +86,39 @@ class VehiclesController extends Controller
 
             $insert =$this->insert($newVehicle);
             if ($insert) {
-                return redirect('/vehicles/dashboard');
+                return redirect('/vehicles/dashboard')->with('success', 'Vehicle created with success!');
             } else {
                 return redirect()->route('vehicles-create')->withErrors(['Chassis ID already exists.'])->withInput();
             }
+        }
+    }
+
+    public function setColor (int $vehicle_id)
+    {
+        $vehicle = Vehicles::find($vehicle_id);
+
+        $vehicle->chassisSeries = substr($vehicle->chassis_id, 0, 11);
+        $vehicle->chassisNumber = substr($vehicle->chassis_id, -6);
+
+        return view('vehicles.set-color', ['vehicle' => $vehicle]);
+    }
+
+    public function confirmDelete (int $vehicle_id)
+    {
+        $vehicle = Vehicles::find($vehicle_id);
+
+        $vehicle->chassisSeries = substr($vehicle->chassis_id, 0, 11);
+        $vehicle->chassisNumber = substr($vehicle->chassis_id, -6);
+
+        return view('vehicles.delete', ['vehicle' => $vehicle]);
+    }
+
+    public function remove (int $vehicle_id)
+    {
+        if ($this->delete($vehicle_id)) {
+            return redirect('/vehicles/dashboard')->with('success', 'Vehicle removed!');
+        } else {
+            return redirect()->route('vehicles-dashboard')->withErrors(['Error on delete the vehicle.']);
         }
     }
 
@@ -98,6 +130,12 @@ class VehiclesController extends Controller
         } else {
             return false;
         }
+    }
+
+    private function delete ($vehicle_id)
+    {
+        $flight = Vehicles::find($vehicle_id);
+        return $flight->delete();
     }
 
     private function insert ($fields)
@@ -113,5 +151,12 @@ class VehiclesController extends Controller
         $vehicles->number_passengers = $fields->number_passengers;
         $vehicles->color = $fields->color;
         return $vehicles->save();
+    }
+
+    private function updateColor ($vehicle_id, $newColor)
+    {
+        $vehicle = new Vehicles($vehicle_id);
+        $vehicle->color = $newColor;
+        dd($vehicle);
     }
 }

@@ -26,14 +26,11 @@
 
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="{{ asset('js/vehicles.js') }}" ></script>
-
-
+    {{--<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>--}}
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md shadow-sm bg-volvo">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -61,7 +58,7 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown bg-volvo">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
@@ -91,7 +88,9 @@
 
     <div class="right-sidebar">
         <div class="slimscrollright">
-            <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
+            <div class="rpanel-title">
+                <label class="m-0">Service Panel</label>
+                <span class="right-sidebar-close" data-toggle="tooltip" data-placement="right" title="Close"><i class="fa fa-2x fa-times"></i></span> </div>
             <div class="r-panel-body">
             </div>
         </div>
@@ -99,5 +98,6 @@
 
     {{--page scripts--}}
     @stack('scripts')
+    <script src="{{ asset('js/vehicles.js') }}" ></script>
 </body>
 </html>
