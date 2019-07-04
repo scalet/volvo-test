@@ -47,7 +47,6 @@
                         @component('vehicles.form.colors', ['colors' => $colors, 'colorSelected' => $vehicle->color])
                         @endcomponent
                     </div>
-                    </div>
                 </div>
             </div>
         </div>
