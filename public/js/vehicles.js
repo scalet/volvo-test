@@ -11,7 +11,7 @@ function openRightSideScreen(title, route, loadCallback) {
     if (rSideBar.attr('class').indexOf('shw-rside') < 0) {
         $('.rpanel-title>label').html(title);
         rSideBar.data('url', route);
-        rPanelBody.html('');
+        rPanelBody.html('<div class="text-center"><img src="/images/loading.gif"></div>');
         rPanelBody.load(route, function () {
             setButtonType();
             $('#color').colorpicker();
@@ -42,18 +42,6 @@ function setButtonType() {
 }
 
 $(function () {
-    $('.btn-add-vehicle').click(function () {
-        openRightSideScreen('Add a vehicle', '/vehicles/create');
-    }).tooltip();
-
-    $('.btn-change-color').click(function () {
-        openRightSideScreen('Set vehicle color', '/vehicles/' + $(this).data('id') + '/set-color');
-    }).tooltip();
-
-    $('.btn-delete').click(function () {
-        openRightSideScreen('Delete Vehicle', '/vehicles/' + $(this).data('id') + '/confirm-delete');
-    });
-
     //Set the close button
     setCloseRightSideScreen();
 });

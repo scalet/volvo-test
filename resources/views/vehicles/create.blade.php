@@ -46,7 +46,7 @@
             <div class="card-header bg-success text-white"><strong>Characteristics</strong></div>
             <div class="card-body">
                 <div class="form-row">
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-6">
                         <label for="typeBus">Type</label>
                         <div>
                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -74,13 +74,12 @@
 
                     <div class="form-group col-md-6">
                         <label for="numberOfPassengers">Number of Passengers</label>
-                        <input type="number" class="form-control" id="numberOfPassengers" name="numberOfPassengers"
+                        <input type="number" class="form-control col-4" id="numberOfPassengers" name="numberOfPassengers"
                                required readonly="">
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="color">Color</label>
-                        <input type="text" class="form-control" id="color" name="color" value="{{old('color')}}"
-                               required>
+                    <div class="form-group col-md-12">
+                        @component('vehicles.form.colors', ['colors' => $colors, 'colorSelected' => old('color')])
+                        @endcomponent
                     </div>
                 </div>
             </div>
@@ -89,7 +88,7 @@
         <button type="button" class="btn btn-danger right-sidebar-close mt-5" data-toggle="tooltip" data-placement="top"
                 title="Close">Cancel
         </button>
-        <button type="submit" class="btn btn-success mt-5">Create</button>
+        <button type="submit" class="btn btn-success btn-create mt-5">Create</button>
     </form>
 </div>
 {{--@endsection--}}

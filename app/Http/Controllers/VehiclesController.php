@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class VehiclesController extends Controller
 {
     const NUMBER_OF_PASSENGERS = ['BUS' => 42, 'CAR' => 4, 'TRUCK' => 1];
+    const COLORS = ['#800000' => 'Red', '#cccccc' => 'Silver', '#262626' => 'Black', '#F1F1F1' => 'White', '#000066' => 'Blue', '#666666' => 'Grey'];
     //
     public function __construct()
     {
@@ -50,14 +51,14 @@ class VehiclesController extends Controller
         //total vehicles
         $dasboardInformation->totVehicles = $dasboardInformation->totBuses + $dasboardInformation->totCars + $dasboardInformation->totTrucks;
 
-        return view('vehicles.dashboard', ['dashboardInformation' => $dasboardInformation]);
+        return view('vehicles.dashboard', ['dashboardInformation' => $dasboardInformation, 'colors' => self::COLORS]);
     }
 
     public function create (Request $request)
     {
 
         if ($request->isMethod('get')) {
-            return view('vehicles.create', ['number_passengers' => self::NUMBER_OF_PASSENGERS]);
+            return view('vehicles.create', ['number_passengers' => self::NUMBER_OF_PASSENGERS, 'colors' => self::COLORS]);
 
         } else if ($request->isMethod('post')) {
 
@@ -89,7 +90,7 @@ class VehiclesController extends Controller
             if ($insert) {
                 return redirect('/vehicles/dashboard')->with('success', 'Vehicle created with success!');
             } else {
-                return redirect()->route('vehicles-create')->withErrors(['Chassis ID already exists.'])->withInput();
+                return redirect('/vehicles/dashboard')->withErrors(['Chassis ID already exists.'])->withInput();
             }
         }
     }
@@ -102,7 +103,7 @@ class VehiclesController extends Controller
             $vehicle->chassisSeries = substr($vehicle->chassis_id, 0, 11);
             $vehicle->chassisNumber = substr($vehicle->chassis_id, -6);
 
-            return view('vehicles.set-color', ['vehicle' => $vehicle]);
+            return view('vehicles.set-color', ['vehicle' => $vehicle, 'colors' => self::COLORS]);
         } else if ($request->isMethod('patch')) {
 
             $this->validate($request, [
@@ -127,7 +128,7 @@ class VehiclesController extends Controller
         $vehicle->chassisSeries = substr($vehicle->chassis_id, 0, 11);
         $vehicle->chassisNumber = substr($vehicle->chassis_id, -6);
 
-        return view('vehicles.delete', ['vehicle' => $vehicle]);
+        return view('vehicles.delete', ['vehicle' => $vehicle, 'colors' => self::COLORS]);
     }
 
     public function remove (int $vehicle_id)

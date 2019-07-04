@@ -135,11 +135,8 @@
                                                     <i class="fas fa-{{strtolower($vehicle->type)}}"></i> {{ucfirst($vehicle->type)}}
                                                 </td>
                                                 <td class="text-right">{{$vehicle->created_at}}</td>
-                                                <td nowrap="">
-                                                    <a href="#" class="btn btn-sm"
-                                                       style="background-color: {{$vehicle->color}};">
-                                                        &nbsp;
-                                                    </a>
+                                                <td class="text-right" nowrap="">
+                                                    <label class="badge" style="color: {{$vehicle->color}};"> {{$colors[$vehicle->color]}}</label>
                                                     <button class="btn btn-secondary btn-sm btn-change-color"
                                                             data-id="{{$vehicle->id}}" data-toggle="tooltip"
                                                             data-placement="top" title="Set the color">

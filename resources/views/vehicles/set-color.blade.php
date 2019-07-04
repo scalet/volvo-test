@@ -44,10 +44,9 @@
                         <div>{{$vehicle->number_passengers}}</div>
                     </div>
                     <div class="form-group col-md-12">
-                        <label for="color">Color</label>
-                        <label class="badge" style="background-color: {{$vehicle->color}}">&nbsp;</label>
-                        <input type="text" class="form-control" id="color" name="color" value="{{$vehicle->color}}"
-                               required>
+                        @component('vehicles.form.colors', ['colors' => $colors, 'colorSelected' => $vehicle->color])
+                        @endcomponent
+                    </div>
                     </div>
                 </div>
             </div>
