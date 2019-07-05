@@ -1,72 +1,79 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Fleet-Manager
+This project is a test for a vehicles fleet management. 
+ 
+Users are able to manage a fleet of three types of vehicles Cars, Buses and Trucks.
 
-## About Laravel
+This project has been developed in PHP using Laravel 5.8 Framework and Docker.
+The docker images are based on LEMP server (PHP 7.2, Ngnix and MySQL 5.7)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+####Technologies
+- PHP 7.2
+- Ngnix
+- MySQL 5.7
+- [Dokcer](https://docs.docker.com/get-started/ "Dokcer")
+- [Docker-compose](https://docs.docker.com/compose/gettingstarted/ "Docker-compose")
+- [Composer](https://getcomposer.org/doc/00-intro.md "Composer")
+- [Laravel 5.8](https://laravel.com/docs/5.8/installation "Laravel")
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+####Setting up the service
+It's required to install docker and docker-compose to run the test. 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+`$ docker-compose up`
 
-## Learning Laravel
+This command must to set up three containers:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    |       Containers        | 
+    | ----------------------- | 
+    | volvotest_db_1 (MySQL)  | 
+    | volvotest_app_1 (PHP)   | 
+    | volvotest_web_1 (Nginx) |
+    
+If you have some problems with the docker instalation, you should check the user credencials. Probably you must to use a root or administrator credencial.
+    
+Few minutes are needed to install all dependeces, so why not take a mug of coffee? =)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1400 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Afterwards check the containers with this command:
+ 
+`$ docker ps`
 
-## Laravel Sponsors
+It probably will show this:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+    |CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                NAMES          |
+    |b869b192c9cd        volvotest_web       "nginx -g 'daemon of…"   26 minutes ago      Up 26 minutes       443/tcp, 0.0.0.0:8080->80/tcp        volvotest_web_1|
+    |72023f975393        volvotest_app       "docker-php-entrypoi…"   26 minutes ago      Up 26 minutes       9000/tcp                             volvotest_app_1|
+    |ef48ecc02773        mysql:5.7           "docker-entrypoint.s…"   26 minutes ago      Up 26 minutes       33060/tcp, 0.0.0.0:33061->3306/tcp   volvotest_db_1 |
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
 
-## Contributing
+Then if the three containers are running, it's time to set up the laravel instalation. 
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+`$ docker exec -ti volvotest_app_1 bash`
 
-## Security Vulnerabilities
+Will show something like this:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+`root@72023f975393:/var/www#`
 
-## License
+Then:
 
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+`root@72023f975393:/var/www# composer setup`
+
+This command is going to install all Laravel dependences and create the database tables.
+
+If everthing goes as expected, then you will be able to access the system with this link:
+- [http://localhost:8080](http://localhost:8080 "Localhost:8080")
+
+
+##The system
+
+This test is for a front-end position with strong background with back-end, so I've tried to
+create the best user experience as I could.   
+
+- Dashboad with totals by vehicles type
+- Create vehicle
+- Set vehicle color
+- Delete vehicle
+- Pie Chart by Type 
+
+
+##Feedback
+Give me a feed back by e-mail: renan.scalet@gmail.com
