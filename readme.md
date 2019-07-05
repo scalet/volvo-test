@@ -7,7 +7,7 @@ Users are able to manage a fleet of three types of vehicles Cars, Buses and Truc
 This project has been developed in PHP using Laravel 5.8 Framework and Docker.
 The docker images are based on LEMP server (PHP 7.2, Ngnix and MySQL 5.7)
 
-####Technologies
+#### Technologies
 - PHP 7.2
 - Ngnix
 - MySQL 5.7
@@ -17,11 +17,11 @@ The docker images are based on LEMP server (PHP 7.2, Ngnix and MySQL 5.7)
 - [Laravel 5.8](https://laravel.com/docs/5.8/installation "Laravel")
 
 ####Setting up the service
-It's required to install docker and docker-compose to run the test. 
+It's required to install docker and docker-compose to run the test. Go to the project directory and run:  
 
 `$ docker-compose up`
 
-This command must to set up three containers:
+This command will create three containers:
 
     |       Containers        | 
     | ----------------------- | 
@@ -29,11 +29,11 @@ This command must to set up three containers:
     | volvotest_app_1 (PHP)   | 
     | volvotest_web_1 (Nginx) |
     
-If you have some problems with the docker instalation, you should check the user credencials. Probably you must to use a root or administrator credencial.
+If you have problems with the docker installation, you should check the user credencials. Probably you will need to use a root or user administrator credencial.
     
-Few minutes are needed to install all dependeces, so why not take a mug of coffee? =)
+A few minutes are needed to install all dependecies, so why not take a mug of coffee? =)
 
-Afterwards check the containers with this command:
+Afterwards, check the containers and running command:
  
 `$ docker ps`
 
@@ -45,15 +45,15 @@ It probably will show this:
     |ef48ecc02773        mysql:5.7           "docker-entrypoint.s…"   26 minutes ago      Up 26 minutes       33060/tcp, 0.0.0.0:33061->3306/tcp   volvotest_db_1 |
 
 
-Then if the three containers are running, it's time to set up the laravel instalation. 
+If the three containers are running, it's time to set up the laravel installation. 
 
 `$ docker exec -ti volvotest_app_1 bash`
 
-Will show something like this:
+It must to show you something like this:
 
 `root@72023f975393:/var/www#`
 
-Then:
+Then, run the command:
 
 `root@72023f975393:/var/www# composer setup`
 
@@ -63,7 +63,7 @@ If everthing goes as expected, then you will be able to access the system with t
 - [http://localhost:8080](http://localhost:8080 "Localhost:8080")
 
 
-##The system
+## The system
 
 This test is for a front-end position with strong background with back-end, so I've tried to
 create the best user experience as I could.   
@@ -75,5 +75,5 @@ create the best user experience as I could.
 - Pie Chart by Type 
 
 
-##Feedback
-Give me a feed back by e-mail: renan.scalet@gmail.com
+## Feedback
+Give me a feedback by e-mail: renan.scalet@gmail.com
