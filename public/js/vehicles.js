@@ -14,8 +14,8 @@ function openRightSideScreen(title, route, loadCallback) {
         rPanelBody.html('<div class="text-center"><img src="/images/loading.gif"></div>');
         rPanelBody.load(route, function () {
             setButtonType();
-            $('#color').colorpicker();
             setCloseRightSideScreen();
+            validationCreate();
         });
     }
 
@@ -23,8 +23,7 @@ function openRightSideScreen(title, route, loadCallback) {
     rSideBar.toggleClass('shw-rside');
 }
 
-function setCloseRightSideScreen()
-{
+function setCloseRightSideScreen() {
     $('.right-sidebar-close').unbind().click(function () {
         var rSideBar = $('.right-sidebar');
         rSideBar.slideDown(50);
@@ -39,6 +38,23 @@ function setButtonType() {
             $('#numberOfPassengers').val($(this).find('input').data('passenger'));
         });
     }
+}
+
+function validationCreate () {
+    window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementById('frmCreate');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }, false);
 }
 
 $(function () {

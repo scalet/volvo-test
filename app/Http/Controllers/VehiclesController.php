@@ -66,7 +66,7 @@ class VehiclesController extends Controller
             $this->validate($request, [
                 'chassisSeries' => 'required|regex:/[a-zA-Z0-9\s]+/|min:3|max:11',
                 'chassisNumber' => 'required|numeric|min:6|max:999999',
-                'type' => 'required:BUS,CAR,TRUCK',
+                'type' => 'in:BUS,CAR,TRUCK',
                 'color' => 'required|regex:/#[a-zA-Z0-9]{6}/'
             ]);
 

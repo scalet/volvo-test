@@ -7,10 +7,9 @@
 {{--@section('content')--}}
 
 <div class="container">
-    <form action="{{route('vehicles-insert')}}" method="post">
+    <h2 class="text-center">Vehicle details</h2>
+    <form id="frmCreate" action="{{route('vehicles-insert')}}" method="post">
         @csrf
-        <h2 class="text-center">Vehicle details</h2>
-
         @if(count($errors)>0)
             <div class="alert alert-danger">
                 <ul class="mb-0">
@@ -53,22 +52,25 @@
                                 <label class="btn btn-volvo {{(old('type') == 'BUS') ? 'active' : ''}}">
                                     <input type="radio" name="type" id="typeBus" value="BUS" class="radio-type"
                                            data-passenger="{{$number_passengers['BUS']}}"
-                                           autocomplete="off" {{(old('type') == 'BUS') ? 'CHECKED' : ''}}> <i
+                                           autocomplete="off" {{(old('type') == 'BUS') ? 'CHECKED' : ''}} required> <i
                                         class="fas fa-bus"></i> Bus
                                 </label>
                                 <label class="btn btn-volvo {{(old('type') == 'CAR') ? 'active' : ''}}">
                                     <input type="radio" name="type" id="typeCar" value="CAR" class="radio-type"
                                            data-passenger="{{$number_passengers['CAR']}}"
-                                           autocomplete="off" {{(old('type') == 'CAR') ? 'CHECKED' : ''}}> <i
+                                           autocomplete="off" {{(old('type') == 'CAR') ? 'CHECKED' : ''}} required> <i
                                         class="fas fa-car"></i> Car
                                 </label>
                                 <label class="btn btn-volvo {{(old('type') == 'TRUCK') ? 'active' : ''}}">
                                     <input type="radio" name="type" id="typeTruck" value="TRUCK" class="radio-type"
                                            data-passenger="{{$number_passengers['TRUCK']}}"
-                                           autocomplete="off" {{(old('type') == 'TRUCK') ? 'CHECKED' : ''}}> <i
+                                           autocomplete="off" {{(old('type') == 'TRUCK') ? 'CHECKED' : ''}} required> <i
                                         class="fas fa-truck"></i> Truck
                                 </label>
                             </div>
+                        </div>
+                        <div class="invalid-feedback">
+                            Please choose a vehicle type.
                         </div>
                     </div>
 

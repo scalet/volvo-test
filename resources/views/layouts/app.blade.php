@@ -26,7 +26,6 @@
 
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    {{--<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>--}}
 </head>
 <body>
     <div id="app">
@@ -97,6 +96,6 @@
 
     {{--page scripts--}}
     @stack('scripts')
-    <script src="{{ asset('js/vehicles.js') }}" ></script>
+    <script src="{{ asset('js/vehicles.js') }}" ></script>\
 </body>
 </html>

@@ -175,4 +175,6 @@
     background-color: #666666;
     border-color: #666666;
 }
-
+.error {
+    border: 1px solid #ff0000;
+}
