@@ -16,7 +16,7 @@ The docker images are based on LEMP server (PHP 7.2, Ngnix and MySQL 5.7)
 - [Composer](https://getcomposer.org/doc/00-intro.md "Composer")
 - [Laravel 5.8](https://laravel.com/docs/5.8/installation "Laravel")
 
-####Setting up the service
+#### Setting service up
 It's required to install docker and docker-compose to run the test. Go to the project directory and run:  
 
 `$ docker-compose up`
