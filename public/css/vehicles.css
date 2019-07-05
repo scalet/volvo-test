@@ -1,0 +1,180 @@
+.right-sidebar {
+    position: fixed;
+    right: -45%;
+    width: 45%;
+    display: none;
+    z-index: 1100;
+    background: #ffffff;
+    top: 0px;
+    padding-bottom: 20px;
+    height: 100%;
+    -webkit-box-shadow: 5px 1px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 5px 1px 40px rgba(0, 0, 0, 0.1);
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.right-sidebar .rpanel-title {
+    display: block;
+    padding: 24px 20px;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 15px;
+    background: #003173;
+}
+.shw-rside {
+    right: 0px;
+    width: 45%;
+    display: block!important;
+}
+.right-sidebar .rpanel-title span {
+    float: right;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.r-panel-body {
+    margin: 1rem;
+}
+
+.bg-volvo {
+    background: #003173;
+    color: #FFF;
+    font-weight: bolder;
+}
+.bg-volvo  a {
+    color: #FFF;
+}
+
+.dropdown-menu {
+    background: #0065f3 !important;
+}
+
+.dropdown-menu a:hover {
+    background: #003173 !important;
+    color: #FFF;
+    font-weight: bolder;
+}
+
+.ct-series-a .ct-slice-pie {
+    fill: #e3342f
+}
+.ct-series-b .ct-slice-pie {
+    fill: #6cb2eb
+}
+.ct-series-c .ct-slice-pie {
+    fill: #6c757d
+}
+.btn-volvo {
+    color: #fff;
+    background-color: #0058b6;
+    border-color: #010c62;
+}
+.btn-volvo:hover {
+    color: #fff;
+    background-color: #003173;
+    border-color: #010c62;
+}
+.btn-volvo:not(:disabled):not(.disabled).active, .btn-volvo:not(:disabled):not(.disabled):active, .show > .btn-volvo.dropdown-toggle {
+    color: #fff;
+    background-color: #003173;
+    border-color: #0c0c5b;
+}
+.tooltip {
+    z-index: 999999;
+}
+
+.btn-color-black {
+    background-color: #161616;
+    color: #FFF;
+}
+.btn-color-black:hover {
+    color: #fff;
+    background-color: #363636;
+    border-color: #363636;
+}
+.btn-color-black:not(:disabled):not(.disabled).active, .btn-color-black:not(:disabled):not(.disabled):active, .show > .btn-color-black.dropdown-toggle {
+    color: #fff;
+    background-color: #363636;
+    border-color: #363636;
+}
+
+.btn-color-white {
+    background-color: #FFF;
+    border-color: #F1F1F1;
+    color: #AAAAAA;
+}
+.btn-color-white:hover {
+    color: #AAAAAA;
+    background-color: #F1F1F1;
+    border-color: #F1F1F1;
+}
+.btn-color-white:not(:disabled):not(.disabled).active, .btn-color-white:not(:disabled):not(.disabled):active, .show > .btn-color-white.dropdown-toggle {
+    color: #AAAAAA;
+    background-color: #F1F1F1;
+    border-color: #F1F1F1;
+}
+
+
+.btn-color-red {
+    background-color: #630000;
+    color: #FFF;
+}
+.btn-color-red:hover {
+    color: #FFF;
+    background-color: #800000;
+    border-color: #FFFFFF;
+}
+.btn-color-red:not(:disabled):not(.disabled).active, .btn-color-red:not(:disabled):not(.disabled):active, .show > .btn-color-red.dropdown-toggle {
+    color: #FFF;
+    background-color: #800000;
+    border-color: #800000;
+}
+
+.btn-color-silver {
+    background-color: #717171;
+    color: #FFF;
+}
+.btn-color-silver:hover {
+    color: #FFF;
+    background-color: #cccccc;
+    border-color: #cccccc;
+}
+.btn-color-silver:not(:disabled):not(.disabled).active, .btn-color-silver:not(:disabled):not(.disabled):active, .show > .btn-color-silver.dropdown-toggle {
+    color: #FFF;
+    background-color: #cccccc;
+    border-color: #cccccc;
+}
+
+.btn-color-blue {
+    background-color: #0000a2;
+    color: #FFF;
+}
+.btn-color-blue:hover {
+    color: #FFF;
+    background-color: #000066;
+    border-color: #000066;
+}
+.btn-color-blue:not(:disabled):not(.disabled).active, .btn-color-blue:not(:disabled):not(.disabled):active, .show > .btn-color-blue.dropdown-toggle {
+    color: #FFF;
+    background-color: #000066;
+    border-color: #000066;
+}
+
+.btn-color-grey {
+    background-color: #737373;
+    color: #FFF;
+}
+.btn-color-grey:hover {
+    color: #FFF;
+    background-color: #666666;
+    border-color: #666666;
+}
+.btn-color-grey:not(:disabled):not(.disabled).active, .btn-color-grey:not(:disabled):not(.disabled):active, .show > .btn-color-grey.dropdown-toggle {
+    color: #FFF;
+    background-color: #666666;
+    border-color: #666666;
+}
+.error {
+    border: 1px solid #ff0000;
+}

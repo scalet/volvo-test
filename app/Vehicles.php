@@ -1,0 +1,15 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Vehicles extends Model
+{
+    protected $table = 'vehicles';
+
+    protected $fillable = [
+        'id', 'chassis_id', 'type', 'number_passenger', 'color'
+    ];
+
+}
